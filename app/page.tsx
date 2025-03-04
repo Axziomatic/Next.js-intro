@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { mockedBlogs } from "./lib/blog";
 
 export default function Home() {
   return (
@@ -10,8 +11,19 @@ export default function Home() {
         reprehenderit iure cum quam consequuntur totam quas impedit? Nam.
       </p>
       <Link href="/about" className="text-slate-300">
-        Läs mer här
+        Läs mer om svenska helgdagar här
       </Link>
+
+      <h2 className="text-2xl mb-2 mt-8">Rubrik</h2>
+      {mockedBlogs.map((blog) => (
+        <Link href={"/blogs/" + blog.slug} key={blog.id}>
+          <article className="border p-2 my-4">
+            <h3>{blog.title}</h3>
+            <p>{blog.summary}</p>
+            <p>{blog.author}</p>
+          </article>
+        </Link>
+      ))}
     </main>
   );
 }
